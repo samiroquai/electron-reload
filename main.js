@@ -9,6 +9,7 @@ const path = require('path')
 const appPath = app.getAppPath()
 const config = require(path.join(appPath, 'package.json'))
 const mainFile = path.join(appPath, config.main || 'index.js')
+const allFiles=path.join("appPath","*.*");
 const ignoredPaths = [mainFile, /node_modules|[/\\]\./]
 
 /**
@@ -75,7 +76,7 @@ module.exports = (glob, options = {}) => {
   // A hard reset is only done when the main file has changed
   let eXecutable = options.electron
   if (eXecutable && fs.existsSync(eXecutable)) {
-    chokidar.watch(mainFile).once('change', createHardresetHandler(eXecutable, options.hardResetMethod))
+    chokidar.watch(allFiles).once('change', createHardresetHandler(eXecutable, options.hardResetMethod))
   } else {
     console.log('Electron could not be found. No hard resets for you!')
   }
