@@ -9,7 +9,7 @@ const path = require('path')
 const appPath = app.getAppPath()
 const config = require(path.join(appPath, 'package.json'))
 const mainFile = path.join(appPath, config.main || 'index.js')
-const allFiles=path.join("appPath","*.*");
+const allFiles=path.join(appPath,"*.*");
 const ignoredPaths = [mainFile, /node_modules|[/\\]\./]
 
 /**
